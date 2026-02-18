@@ -33,12 +33,21 @@ function calculateOverTimePay(rate, hours) {
     return rate * hours
 }; 
 
+function grossPay(rate, hours) { 
+    if (hours > 40) {
+        rate * 1.5}
+    else { 
+        rate * 1
+    } 
+    return rate * hours
+}; 
+
 function calculateTaxes(grossPay) { 
-    return (hours * rate) * 0.85;
+    return grossPay * 0.85;
 }; 
 
 function processPayroll(employees) { 
-    console.log(`Name: ${employees.name} | Base Pay: ${calculateBasePay} | Over Time Pay: ${calculateOverTimePay} | Gross Pay ${} | Net Pay ${calculateTaxes}`)
+    console.log(`Name: ${employees.name} | Base Pay: ${calculateBasePay} | Over Time Pay: ${calculateOverTimePay} | Gross Pay ${grossPay} | Net Pay ${calculateTaxes}`)
 }; 
 
 processPayroll(employees);
