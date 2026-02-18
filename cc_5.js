@@ -28,30 +28,27 @@ function calculateBasePay(rate, hours) {
 
 //Over Time Function
 function calculateOverTimePay(rate, hours) { 
-    if (hours > 40) {
-        rate * 1.5
+    if (hours > 40) { 
+        return (hours - 40) * rate * 1.5
     };
-    return calculateBasePay(rate * hours);
 }; 
 
-//Gross Pay function
-function grossPay(rate, hours) { 
-    if (hours > 40) {
-        rate * 1.5}
-    else { 
-        rate * 1
-    } 
-    return rate * hours
-}; 
+//Gross Pay function 
+function calculateGrossPay(rate, hours) { 
+     let basePay = calculateBasePay(rate, hours); 
+     let overTimePay = calculateOverTimePay(rate, hours); 
+     return basePay + overTimePay; 
+};  
 
 //Net Pay Function
-function calculateTaxes(grossPay) { 
+function calculateTaxes(rate, hours) { 
+    let grossPay = calculateGrossPay(rate, hours); 
     return grossPay * 0.85;
 }; 
 
 //Payroll Process Function
 function processPayroll(employees) { 
-    console.log(`Name: ${employees.name} | Base Pay: $${calculateBasePay(employees.rate, employees.hours)} | Over Time Pay: $${calculateOverTimePay(employees.rate, employees.hours)} | Gross Pay $${grossPay(employees.rate, employees.hours)} | Net Pay $${calculateTaxes(employees.rate, employees.hours)}`)
+    console.log(`Name: ${employees.name} | Base Pay: $${calculateBasePay(employees.rate, employees.hours)} | Over Time Pay: $${calculateOverTimePay(employees.rate, employees.hours)} | Gross Pay $${calculateGrossPay(employees.rate, employees.hours)} | Net Pay $${calculateTaxes(employees.rate, employees.hours)}`)
 }; 
 
 //Loop and display
