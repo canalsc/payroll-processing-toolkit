@@ -51,7 +51,10 @@ function processPayroll(employees) {
     console.log(`Name: ${employees.name} | Base Pay: $${calculateBasePay(employees.rate, employees.hours)} | Over Time Pay: $${calculateOverTimePay(employees.rate, employees.hours)} | Gross Pay $${calculateGrossPay(employees.rate, employees.hours)} | Net Pay $${calculateTaxes(employees.rate, employees.hours)}`)
 }; 
 
-//Loop and display
-for (const employee of employees) {
-    console.log(processPayroll(employee));
+//Loop and display 
+let count = 1; 
+for (const employee of employees) { 
+    console.log(`===Pay Roll for Employee ${count}===`)
+    console.log(processPayroll(employee)); 
+    count++;
 };
