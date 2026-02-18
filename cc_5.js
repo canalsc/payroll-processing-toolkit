@@ -3,36 +3,38 @@
 let employees = [ 
     { 
         name: "Hank Green", 
-        hourlyRate:  20, 
-        hoursWorked: 70
+        rate:  20, 
+        hours: 70
     }, 
     { 
         name: "Jane Doe", 
-        hourlyRate: 19,
-        hoursWorked: 60
+        rate: 19,
+        hours: 60
     }, 
     { 
         name: "Bill Nye", 
-        hourlyRate: 22, 
-        hoursWorked: 40
+        rate: 22, 
+        hours: 40
     }
 ]; 
 
-//Function that returns pay for up to 40 hours 
+//Base Pay Function
 function calculateBasePay(rate, hours) { 
     if (hours > 40) {
         hours = 40
-    }
-    return rate * hours
+    };
+    return rate * hours;
 };
 
+//Over Time Function
 function calculateOverTimePay(rate, hours) { 
     if (hours > 40) {
-        rate * 1.5;
-    }
-    return rate * hours
+        rate * 1.5
+    };
+    return calculateBasePay(rate * hours);
 }; 
 
+//Gross Pay function
 function grossPay(rate, hours) { 
     if (hours > 40) {
         rate * 1.5}
@@ -42,12 +44,17 @@ function grossPay(rate, hours) {
     return rate * hours
 }; 
 
+//Net Pay Function
 function calculateTaxes(grossPay) { 
     return grossPay * 0.85;
 }; 
 
+//Payroll Process Function
 function processPayroll(employees) { 
-    console.log(`Name: ${employees.name} | Base Pay: ${calculateBasePay} | Over Time Pay: ${calculateOverTimePay} | Gross Pay ${grossPay} | Net Pay ${calculateTaxes}`)
+    console.log(`Name: ${employees.name} | Base Pay: $${calculateBasePay(employees.rate, employees.hours)} | Over Time Pay: $${calculateOverTimePay(employees.rate, employees.hours)} | Gross Pay $${grossPay(employees.rate, employees.hours)} | Net Pay $${calculateTaxes(employees.rate, employees.hours)}`)
 }; 
 
-processPayroll(employees);
+//Loop and display
+for (const employee of employees) {
+    console.log(processPayroll(employee));
+};
