@@ -3,18 +3,18 @@
 let employees = [ 
     { 
         name: "Hank Green", 
-        rate:  20, 
-        hours: 70
+        hourlyRate:  20, 
+        hoursWorked: 70
     }, 
     { 
         name: "Jane Doe", 
-        rate: 19,
-        hours: 60
+        hourlyRate: 19,
+        hoursWorked: 60
     }, 
     { 
         name: "Bill Nye", 
-        rate: 22, 
-        hours: 40
+        hourlyRate: 22, 
+        hoursWorked: 40
     }
 ]; 
 
@@ -27,33 +27,36 @@ function calculateBasePay(rate, hours) {
 };
 
 //Over Time Function
-function calculateOverTimePay(rate, hours) { 
+function calculateOvertimePay(rate, hours) { 
+    if (hours <= 40) { 
+        return 0
+    };
     if (hours > 40) { 
         return (hours - 40) * rate * 1.5
     };
 }; 
 
 //Gross Pay function 
-function calculateGrossPay(rate, hours) { 
+function grossPay(rate, hours) { 
      let basePay = calculateBasePay(rate, hours); 
-     let overTimePay = calculateOverTimePay(rate, hours); 
+     let overTimePay = calculateOvertimePay(rate, hours); 
      return basePay + overTimePay; 
 };  
 
 //Net Pay Function
-function calculateTaxes(rate, hours) { 
-    let grossPay = calculateGrossPay(rate, hours); 
+function calculateTaxes(grossPay) { 
     return grossPay * 0.85;
 }; 
 
 //Payroll Process Function
 function processPayroll(employees) { 
-    console.log(`Name: ${employees.name} | Base Pay: $${calculateBasePay(employees.rate, employees.hours)} | Over Time Pay: $${calculateOverTimePay(employees.rate, employees.hours)} | Gross Pay $${calculateGrossPay(employees.rate, employees.hours)} | Net Pay $${calculateTaxes(employees.rate, employees.hours)}`)
+    return `Name: ${employees.name} | Base Pay: $${calculateBasePay(employees.hourlyRate, employees.hoursWorked)} | Over Time Pay: $${calculateOvertimePay(employees.hourlyRate, employees.hoursWorked)} | Gross Pay $${grossPay(employees.hourlyRate, employees.hoursWorked)} | Net Pay $${calculateTaxes(employees.hourlyRate, employees.hoursWorked)}`
 }; 
 
 //Loop and display 
 let count = 1; 
 for (const employee of employees) { 
+    const payroll = processPayroll(employee);
     console.log(`===Pay Roll for Employee ${count}===`)
     console.log(processPayroll(employee)); 
     count++;
